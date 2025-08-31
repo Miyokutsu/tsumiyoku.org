@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Wiki — manquant</title>
+    <link rel="stylesheet" th:href="@{/css/site.css}"/>
+</head>
+<body>
+<main class="container">
+    <h1>Page introuvable</h1>
+    <p>La page "<span th:text="${missingSlug}">slug</span>" n'existe pas encore.</p>
+    <p><a th:href="@{'/editor/wiki/' + ${missingSlug}}">Créer/éditer</a></p>
+</main>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Tsumiyoku — Monde</title>
+    <link rel="stylesheet" th:href="@{/css/site.css}"/>
+</head>
+<body>
+<header class="top">
+    <div class="brand">Tsumiyoku — Monde</div>
+    <nav>
+        <a th:href="@{/}">Accueil</a>
+        <a th:href="@{'/wiki/' + 'accueil'}">Wiki</a>
+        <a th:href="@{'/announcements/' + 'gov'}">Annonces gouvernementales</a>
+        <a th:href="@{'/announcements/' + 'sci'}">Annonces scientifiques</a>
+    </nav>
+    <div class="auth">
+        <span th:if="${user != null}" th:text="${user.attributes['username']}">user</span>
+        <a th:if="${user == null}" th:href="@{/oauth2/authorization/discord}">Se connecter</a>
+        <a th:if="${user != null}" th:href="@{/logout}">Se déconnecter</a>
+    </div>
+</header>
+
+<main class="container">
+    <h1>Bienvenue</h1>
+    <p>Portail principal du worldbuilding : wiki, annonces, et plus.</p>
+    <p th:if="${user != null}">
+        Vous êtes connecté. Accès éditeur si votre rôle Discord l'autorise via le mappage des rôles.
+    </p>
+</main>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title th:text="'Éditer — ' + ${page.slug}">Éditer</title>
+    <link rel="stylesheet" th:href="@{/css/site.css}"/>
+</head>
+<body>
+<main class="container">
+    <h1 th:text="'Éditer : ' + ${page.slug}">Éditer</h1>
+    <form method="post" th:action="@{/editor/wiki/save}">
+        <label>Slug <input name="slug" th:value="${page.slug}" required/></label>
+        <label>Titre <input name="title" th:value="${page.title}" required/></label>
+        <label>Markdown</label>
+        <label>
+            <textarea name="markdown" rows="20" th:text="${page.contentMarkdown}"></textarea>
+        </label>
+        <label><input type="checkbox" name="publish" th:checked="${page.published}"/> Publier</label>
+        <button type="submit">Enregistrer</button>
+    </form>
+    <p><a th:href="@{'/wiki/' + ${page.slug}}">Aperçu</a></p>
+</main>
+</body>
+</html>

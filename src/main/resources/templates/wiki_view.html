@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title th:text="${page.title}">Wiki</title>
+    <link rel="stylesheet" th:href="@{/css/site.css}"/>
+</head>
+<body>
+<header class="top">
+    <div class="brand">Wiki</div>
+    <nav>
+        <a th:href="@{/}">Accueil</a>
+    </nav>
+    <div class="auth">
+        <a th:href="@{/oauth2/authorization/discord}">Connexion</a>
+    </div>
+</header>
+
+<main class="container">
+    <h1 th:text="${page.title}">Titre</h1>
+    <article th:utext="${page.contentHtml}">Contenu</article>
+    <p class="meta">
+        <span th:text="'Dernière mise à jour : ' + ${#temporals.format(page.updatedAt, 'yyyy-MM-dd HH:mm')}"></span>
+        <a th:href="@{'/editor/wiki/' + ${page.slug}}">[Modifier]</a>
+    </p>
+</main>
+</body>
+</html>

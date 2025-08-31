@@ -1,0 +1,39 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/worldsite?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  security:
+    oauth2:
+      client:
+        registration:
+          discord:
+            client-id: ${DISCORD_CLIENT_ID}
+            client-secret: ${DISCORD_CLIENT_SECRET}
+            scope: identify
+            redirect-uri: "{baseUrl}/login/oauth2/code/discord"
+            authorization-grant-type: authorization_code
+            client-name: Discord
+        provider:
+          discord:
+            authorization-uri: https://discord.com/api/oauth2/authorize
+            token-uri: https://discord.com/api/oauth2/token
+            user-info-uri: https://discord.com/api/users/@me
+            user-name-attribute: username
+
+# Reuse your existing Discord OAuth2 client from the gov site (same callback works if you share domain)
+# If using different callback, set this app's redirect-uri accordingly.
+# Example placeholders:
+
+server:
+  port: 8082
